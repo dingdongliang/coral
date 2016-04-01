@@ -1,0 +1,21 @@
+group 'com.dyenigma'
+version '0.1'
+
+apply plugin: 'java'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+
+    compile(
+            project(':coral-entity')
+    )
+
+    testCompile(
+            'junit:junit:4.11'
+    )
+}

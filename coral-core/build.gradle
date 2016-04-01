@@ -1,0 +1,70 @@
+group "com.dyenigma"
+version "0.1"
+
+apply plugin: "java"
+
+//自定义变量值，方便下面依赖包的时候统一管理版本号
+ext {
+    spring_version = "4.2.5.RELEASE"
+    jackson_version = "2.7.0"
+    shiro_version = "1.2.4"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //依赖包
+    compile(
+            "org.springframework:spring-core:$spring_version",
+            "org.springframework:spring-beans:$spring_version",
+            "org.springframework:spring-context:$spring_version",
+            "org.springframework:spring-context-support:$spring_version",
+            "org.springframework:spring-tx:$spring_version",
+            "org.springframework:spring-web:$spring_version",
+            "org.springframework:spring-webmvc:$spring_version",
+            "org.springframework:spring-jdbc:$spring_version",
+            "org.springframework:spring-test:$spring_version",
+            "org.apache.shiro:shiro-core:$shiro_version",
+            "org.apache.shiro:shiro-ehcache:$shiro_version",
+            "org.apache.shiro:shiro-spring:$shiro_version",
+            "org.apache.shiro:shiro-web:$shiro_version",
+            "org.apache.zookeeper:zookeeper:3.4.8",
+            "org.apache.curator:curator-framework:2.9.1",
+            "com.101tec:zkclient:0.7",
+            "javax.servlet:javax.servlet-api:3.1.0",
+            "javax.servlet:jstl:1.2",
+            "org.mybatis:mybatis:3.3.0",
+            "org.mybatis:mybatis-spring:1.2.3",
+            "mysql:mysql-connector-java:5.1.38",
+            "com.alibaba:druid:1.0.18",
+            "org.aspectj:aspectjweaver:1.8.9",
+            "com.fasterxml.jackson.core:jackson-databind:2.7.3",
+            "com.alibaba:fastjson:1.2.7",
+            "com.fasterxml.jackson.core:jackson-annotations:$jackson_version",
+            "com.fasterxml.jackson.core:jackson-core:$jackson_version",
+            "com.fasterxml.jackson.core:jackson-databind:$jackson_version",
+            "commons-io:commons-io:2.4",
+            "commons-fileupload:commons-fileupload:1.3.1",
+            "com.github.penggle:kaptcha:2.3.2",
+            "org.quartz-scheduler:quartz:2.2.1",
+            "org.apache.commons:commons-lang3:3.4"
+    )
+
+    // 防止版本冲突，依赖dubbo包，但是排除其依赖的spring包,TODO:升级版本到dubbox2.8.4
+    compile("com.alibaba:dubbo:2.5.3") {
+        exclude group: "org.springframework"
+    }
+
+    //依赖测试包
+    testCompile(
+            "junit:junit:4.11"
+    )
+}
+
+//项目字体编码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}

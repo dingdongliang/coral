@@ -1,0 +1,7 @@
+rootProject.name = 'coral'
+include 'coral-api'
+include 'coral-core'
+include 'coral-entity'
+include 'coral-servers'
+include 'coral-web'
+

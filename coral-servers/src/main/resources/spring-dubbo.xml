@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于描述依赖关系，名称不能重复 -->
+    <dubbo:application name="dubbo-server"/>
+
+    <!--
+        使用zookeeper广播注册中心暴露服务地址
+        protocol:注册中心名称，timeout注册中心请求超时时间(毫秒)
+        address:IP地址与端口,可以Zookeeper集群配置，地址可以多个以逗号隔开等
+        register:是否向此注册中心注册服务，如果设为false，将只订阅，不注册
+        check:注册中心不存在时，是否报错
+        subscribe:是否向此注册中心订阅服务，如果设为false，将只注册，不订阅
+        注册中心为对等集群，可动态增加机器部署实例，所有客户端将自动发现新的注册中心
+        服务提供者无状态，可动态增加机器部署实例，注册中心将推送新的服务提供者信息给消费者
+    -->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+
+    <!-- 用dubbo协议在20880端口暴露服务，可以配置多个协议供选择-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+
+    <!--
+        官方注释:扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类。
+        测试发现:此处package不填写包名会无法注册Service，扫描全包需填写包首即可或者填写至类的上一级目录。
+        <dubbo:annotation package="com.dyenigma.api.impl"/>
+    -->
+
+    <!--
+        interface服务接口的路径,ref引用对应的实现类的Bean的ID
+        registry向指定注册中心注册，在多个注册中心时使用，值为<dubbo:registry>的id属性
+        多个注册中心ID用逗号分隔，如果不想将该服务注册到任何registry，可将值设为N/A
+        register 默认true ，该协议的服务是否注册到注册中心
+        服务提供者在启动时，向注册中心注册自己提供的服务
+     -->
+    <dubbo:service interface="com.dyenigma.api.UserService" ref="userService" timeout="3000"/>
+
+</beans>

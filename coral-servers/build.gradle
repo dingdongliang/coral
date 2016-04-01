@@ -1,0 +1,20 @@
+group 'com.dyenigma'
+version '0.1'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            project(':coral-api'),
+            project(':coral-core')
+    )
+
+    testCompile(
+            'junit:junit:4.11'
+    )
+}
