@@ -1,0 +1,22 @@
+##dubbox-2.8.0：
+- 主要支持REST风格远程调用、支持Kryo和FST序列化、升级了Spring和Zookeeper客户端、调整了demo应用等等
+
+##dubbox-2.8.1：
+- 主要支持基于嵌入式tomcat的http-remoting，优化了REST客户端性能，在REST中支持限制服务端接纳的最大HTTP连接数等等
+
+##dubbox-2.8.2：
+- 支持REST中的HTTP logging，包括HTTP header的字段和HTTP body中的消息体，方便调试、日志纪录等等
+- 提供辅助类便于REST的中文处理
+- 改变使用@Reference annotation配置时的异常处理方式，即当用annotation配置时，过去dubbo在启动期间不抛出依赖服务找不到的异常，
+- 而是在具体调用时抛出NPE，这与用XML配置时的行为不一致。
+- 较大的充实了Dubbo REST的文档
+
+##dubbox-2.8.3：
+- 在REST中支持dubbo统一的方式用bean validation annotation作参数校验
+- 在RpcContext上支持获取底层协议的Request/Response
+- 支持采用Spring的Java Config方式配置dubbo
+- 在Dubbo协议中支持基于Jackson的json序列化
+- 在Spring AOP代理过的对象上支持dubbo annotation配置
+- 修正Dubbo管理界面中没有consumer时出现空指针异常
+- 修正@Reference annotation中protocol设置不起作用的bug
+- 修正@Reference annotation放在setter方法上即会出错的bug

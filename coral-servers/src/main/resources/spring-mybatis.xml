@@ -77,7 +77,7 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <!--Spring aop事务管理，如果是用注解方式声明dubbo Service，那么加上这里会报错-->
+    <!--Spring aop事务管理，在Spring AOP代理过的对象上不支持dubbo2.5.3 annotation配置,dubbox2.8.2可用注解-->
     <aop:config>
         <aop:pointcut id="transactionPointcut"
                       expression="execution(* com.dyenigma.api.impl.*.*(..))"/>

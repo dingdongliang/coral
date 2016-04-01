@@ -39,6 +39,6 @@
         register 默认true ，该协议的服务是否注册到注册中心
         服务提供者在启动时，向注册中心注册自己提供的服务
      -->
-    <dubbo:service interface="com.dyenigma.api.UserService" ref="userService" timeout="3000"/>
+    <dubbo:service interface="com.dyenigma.api.UserService" ref="userService" timeout="10000"/>
 
 </beans>
