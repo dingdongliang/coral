@@ -1,20 +1,20 @@
-# scatter
+# coral
 dubbo分布式开发架构
 
-##scatter-api
-- 接口声明，依赖scatter-entity
+##coral-api
+- 接口声明，依赖coral-entity
 
-##scatter-core
+##coral-core
 - 第三方jar包与工具类
 
-##scatter-entity
+##coral-entity
 - 实体类与model
 
-##scatter-servers
-- 提供者，依赖scatter-api与scatter-core
+##coral-servers
+- 提供者，依赖coral-api与coral-core
 
-##scatter-web
-- 消费者，依赖scatter-api与scatter-core
+##coral-web
+- 消费者，依赖coral-api与coral-core
 
 ##启动顺序：
 - 本机先安装github的客户端，配好环境变量
